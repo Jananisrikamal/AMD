@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerceptaLearn AI</title>
+    <meta name="description" content="An AI tutor that listens to how students explain concepts to confirm real understanding.">
+    <!-- Google Fonts: Outfit for a modern, geometric, premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 1. Welcome / Login Screen -->
+        <section id="screen-welcome" class="screen active">
+            <div class="content-wrapper center-content">
+                <div class="logo-container">
+                    <span class="material-symbols-rounded logo-icon">psychology</span>
+                </div>
+                <h1 class="brand-title">PerceptaLearn <span>AI</span></h1>
+                <p class="subtitle">Learn based on how you understand</p>
+                
+                <div class="action-group">
+                    <button class="btn btn-primary btn-large" onclick="app.navigate('dashboard')">
+                        Login as Student
+                        <span class="material-symbols-rounded">arrow_forward</span>
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="app.navigate('dashboard')">Continue</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Student Dashboard Screen -->
+        <section id="screen-dashboard" class="screen hidden">
+            <header class="app-header">
+                <div>
+                    <h2>Welcome, Student</h2>
+                    <p class="text-light">Ready to learn something new?</p>
+                </div>
+                <div class="avatar">
+                    <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix" alt="Student Avatar">
+                </div>
+            </header>
+            
+            <div class="content-wrapper scrollable">
+                <div class="progress-section">
+                    <div class="flex-between mb-sm">
+                        <span class="text-bold">Learning Progress</span>
+                        <span class="text-primary">78%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+
+                <h3 class="section-title">Your Subjects</h3>
+                <div class="grid-2">
+                    <div class="card subject-card" onclick="app.navigate('subject')">
+                        <div class="card-icon bg-blue"><span class="material-symbols-rounded">science</span></div>
+                        <h4>Science</h4>
+                        <p>4 Chapters left</p>
+                    </div>
+                    <div class="card subject-card">
+                        <div class="card-icon bg-orange"><span class="material-symbols-rounded">calculate</span></div>
+                        <h4>Maths</h4>
+                        <p>2 Chapters left</p>
+                    </div>
+                    <div class="card subject-card">
+                        <div class="card-icon bg-purple"><span class="material-symbols-rounded">menu_book</span></div>
+                        <h4>English</h4>
+                        <p>Up to date</p>
+                    </div>
+                    <div class="card subject-card">
+                        <div class="card-icon bg-green"><span class="material-symbols-rounded">translate</span></div>
+                        <h4>Tamil</h4>
+                        <p>1 Chapter left</p>
+                    </div>
+                </div>
+
+                <div class="ai-tutor-banner mt-lg">
+                    <div class="banner-content">
+                        <h3>Ask AI Tutor</h3>
+                        <p>Have general doubts? I'm here to help.</p>
+                        <button class="btn btn-white btn-sm mt-sm">Chat Now</button>
+                    </div>
+                    <div class="banner-icon">
+                        <span class="material-symbols-rounded">robot_2</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Subject Selection Screen -->
+        <section id="screen-subject" class="screen hidden">
+            <header class="app-header header-with-back">
+                <button class="btn-icon" onclick="app.navigate('dashboard')">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                </button>
+                <h2>Science</h2>
+            </header>
+            
+            <div class="content-wrapper scrollable">
+                <div class="chapter-list">
+                    <div class="card list-card" onclick="app.navigate('chapter')">
+                        <div class="card-content">
+                            <h4>Photosynthesis</h4>
+                            <p class="text-light text-sm">Life processes • 15 mins</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Start Learning</button>
+                    </div>
+                    <div class="card list-card locked">
+                        <div class="card-content">
+                            <h4>Respiration</h4>
+                            <p class="text-light text-sm">Life processes • 20 mins</p>
+                        </div>
+                        <span class="material-symbols-rounded text-light">lock</span>
+                    </div>
+                    <div class="card list-card locked">
+                        <div class="card-content">
+                            <h4>Acids & Bases</h4>
+                            <p class="text-light text-sm">Chemistry • 25 mins</p>
+                        </div>
+                        <span class="material-symbols-rounded text-light">lock</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Chapter Selection Screen -->
+        <section id="screen-chapter" class="screen hidden">
+             <header class="app-header header-with-back">
+                <button class="btn-icon" onclick="app.navigate('subject')">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                </button>
+                <h2>Photosynthesis</h2>
+            </header>
+            
+            <div class="content-wrapper">
+                <div class="hero-image-placeholder">
+                    <span class="material-symbols-rounded">eco</span>
+                </div>
+                
+                <div class="chapter-details mt-lg">
+                    <h3 class="mb-sm">About this chapter</h3>
+                    <p class="text-light mb-lg">
+                        Learn how plants make their own food using sunlight, water, and carbon dioxide. This process is essential for all life on Earth.
+                    </p>
+                    
+                    <h4 class="mb-md">Topics Covered</h4>
+                    <ul class="topic-list mb-xl">
+                        <li><span class="material-symbols-rounded icon-sm text-primary">check_circle</span> Definition of Photosynthesis</li>
+                        <li><span class="material-symbols-rounded icon-sm text-primary">check_circle</span> The Process (Inputs & Outputs)</li>
+                        <li><span class="material-symbols-rounded icon-sm text-primary">check_circle</span> Importance to Ecosystem</li>
+                    </ul>
+                </div>
+                
+                <div class="bottom-action">
+                    <button class="btn btn-primary btn-block btn-large" onclick="app.navigate('lesson')">
+                        <span class="material-symbols-rounded">play_circle</span>
+                        Watch AI Lesson
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. AI Lesson Screen -->
+        <section id="screen-lesson" class="screen hidden">
+            <header class="app-header header-with-back">
+                <button class="btn-icon" onclick="app.navigate('chapter')">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+                <h2>AI Visual Lesson</h2>
+                <div class="w-24"></div> <!-- Spacer -->
+            </header>
+            
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=1000&auto=format&fit=crop" class="video-poster" alt="Plant leaf">
+                    <div class="play-overlay">
+                        <span class="material-symbols-rounded play-icon">play_arrow</span>
+                    </div>
+                    <div class="video-controls">
+                        <div class="timeline"><div class="timeline-progress" style="width: 45%;"></div></div>
+                        <div class="flex-between text-xs text-white mt-xs">
+                            <span>01:12</span>
+                            <span>03:45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-wrapper scrollable pt-md">
+                <h3 class="mb-md">Current Topic</h3>
+                
+                <div class="subtopic-tracker">
+                    <div class="subtopic completed">
+                        <div class="tracker-node"></div>
+                        <div class="tracker-content">
+                            <h4>Definition</h4>
+                            <p>What is photosynthesis?</p>
+                        </div>
+                    </div>
+                    <div class="subtopic active">
+                        <div class="tracker-node"></div>
+                        <div class="tracker-content">
+                            <h4>Process</h4>
+                            <p>Sunlight + CO2 + Water -> Glucose + O2</p>
+                        </div>
+                    </div>
+                    <div class="subtopic upcoming">
+                        <div class="tracker-node"></div>
+                        <div class="tracker-content">
+                            <h4>Importance</h4>
+                            <p>Why it matters to us</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-xl text-center">
+                    <button class="btn btn-primary btn-block" onclick="app.navigate('quiz', 'reset')">
+                        Take Concept Test
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Quiz Screen -->
+        <section id="screen-quiz" class="screen hidden">
+            <div class="progress-header">
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quiz-progress" style="width: 33%"></div>
+                </div>
+                <button class="btn-icon btn-sm" onclick="app.navigate('lesson')">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            
+            <div class="content-wrapper quiz-content">
+                 <div class="question-container">
+                    <span class="tag mb-md">Concept: Process</span>
+                    <h2 id="question-text" class="mb-xl">What are the primary inputs required for photosynthesis?</h2>
+                    
+                    <div class="options-list" id="options-list">
+                        <!-- Options injected by JS -->
+                        <button class="option-btn" onclick="app.selectOption(this, 'A')">
+                            <span class="option-letter">A</span>
+                            <span class="option-text">Oxygen and Glucose</span>
+                        </button>
+                        <button class="option-btn" onclick="app.selectOption(this, 'B')">
+                            <span class="option-letter">B</span>
+                            <span class="option-text">Sunlight, Carbon Dioxide, and Water</span>
+                        </button>
+                        <button class="option-btn" onclick="app.selectOption(this, 'C')">
+                            <span class="option-letter">C</span>
+                            <span class="option-text">Soil, Nitrogen, and Oxygen</span>
+                        </button>
+                        <button class="option-btn" onclick="app.selectOption(this, 'D')">
+                            <span class="option-letter">D</span>
+                            <span class="option-text">Heat, Sugar, and Water</span>
+                        </button>
+                    </div>
+                 </div>
+                 
+                 <div class="bottom-action">
+                    <button id="submit-answer-btn" class="btn btn-primary btn-block btn-large disabled" onclick="app.submitAnswer()">
+                        Submit Answer
+                    </button>
+                 </div>
+            </div>
+        </section>
+
+        <!-- 7. Answer Feedback Screen (Correct/Wrong) -->
+        <section id="screen-feedback" class="screen hidden">
+            <div class="content-wrapper center-content">
+                <div id="feedback-icon-container" class="feedback-icon-lg mb-lg safe-bg-green text-green">
+                    <span class="material-symbols-rounded" id="feedback-icon">check_circle</span>
+                </div>
+                
+                <h2 id="feedback-title" class="mb-md text-center">Excellent work!</h2>
+                <p id="feedback-subtitle" class="text-center text-light mb-xl">You've understood this concept well.</p>
+                
+                <!-- Only visible when wrong -->
+                <div id="feedback-explanation-box" class="explanation-box hidden mb-xl">
+                    <div class="flex-row align-start mb-sm">
+                        <span class="material-symbols-rounded text-primary mr-sm mt-xs icon-sm">lightbulb</span>
+                        <h4>Let's clarify:</h4>
+                    </div>
+                    <p id="feedback-explanation">Plants breathe in Carbon Dioxide and use sunlight and water to make food. They release Oxygen as a byproduct.</p>
+                </div>
+                
+                <div class="bottom-action w-full">
+                    <button id="feedback-next-btn" class="btn btn-primary btn-block btn-large mt-auto" onclick="app.handleFeedbackNext()">
+                        Next Question
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Explain-Back (Voice) Screen -->
+        <section id="screen-explain-back" class="screen hidden">
+             <header class="app-header header-with-back">
+                <button class="btn-icon" onclick="app.navigate('quiz', 'retest')">
+                    <span class="material-symbols-rounded">arrow_back</span>
+                </button>
+                <h2>Explain it back</h2>
+                <div class="w-24"></div>
+            </header>
+            
+            <div class="content-wrapper center-content">
+                <div class="ai-avatar mb-lg">
+                    <div class="pulse-ring"></div>
+                    <span class="material-symbols-rounded text-white">record_voice_over</span>
+                </div>
+                
+                <h3 class="text-center mb-md">Please explain this concept in your own words.</h3>
+                <p class="text-center text-light mb-xl">What do plants need to make their food, and what do they produce?</p>
+                
+                <div class="voice-recorder-area my-xl">
+                    <button id="mic-btn" class="mic-button" onclick="app.toggleRecording()">
+                        <span class="material-symbols-rounded">mic</span>
+                    </button>
+                    <p id="recording-status" class="mt-md text-light">Tap to start recording</p>
+                    <div id="recording-waves" class="audio-waves hidden mt-sm">
+                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm text-light mb-lg">You can take your time. There's no rush.</p>
+                
+                <div class="bottom-action w-full">
+                    <button id="submit-explanation-btn" class="btn btn-primary btn-block btn-large disabled" onclick="app.submitExplanation()">
+                        Submit Explanation
+                    </button>
+                </div>
+            </div>
+            
+            <!-- AI processing overlay -->
+            <div id="ai-processing-overlay" class="overlay hidden">
+                <div class="spinner"></div>
+                <p class="mt-md text-white font-medium">AI is verifying your understanding...</p>
+            </div>
+        </section>
+
+        <!-- 9. Progress Summary Screen -->
+        <section id="screen-summary" class="screen hidden">
+            <div class="celebration-bg"></div>
+            <div class="content-wrapper relative z-10 pt-xl">
+                <div class="text-center mb-xl">
+                    <div class="trophy-icon mb-md">
+                        <span class="material-symbols-rounded">emoji_events</span>
+                    </div>
+                    <h2>Your Learning Summary</h2>
+                    <p class="text-light mt-xs">Great effort! Keep learning — improvement is a process.</p>
+                </div>
+                
+                <div class="summary-card mb-lg">
+                    <h4 class="flex-row align-center mb-md text-green">
+                        <span class="material-symbols-rounded mr-sm">check_circle</span>
+                        Concepts Understood
+                    </h4>
+                    <ul class="summary-list success">
+                        <li>Photosynthesis Definition</li>
+                        <li>Role of Sunlight & Chlorophyll</li>
+                        <li>Outputs (Glucose & Oxygen)</li>
+                    </ul>
+                </div>
+                
+                <div class="summary-card mb-xl">
+                    <h4 class="flex-row align-center mb-md text-orange">
+                        <span class="material-symbols-rounded mr-sm">search</span>
+                        Concepts to Improve
+                    </h4>
+                    <ul class="summary-list improve">
+                        <li>Differentiating Inputs from Outputs</li>
+                    </ul>
+                    <p class="text-sm mt-md text-light">We'll focus a bit more on this next time.</p>
+                </div>
+                
+                <div class="bottom-action w-full">
+                    <button class="btn btn-primary btn-block btn-large mt-auto" onclick="app.navigate('dashboard')">
+                        Continue Learning
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
